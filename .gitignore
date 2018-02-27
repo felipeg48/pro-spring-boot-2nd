@@ -1,5 +1,6 @@
 *.class
 .DS_Store
+.vscode/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -46,6 +47,7 @@ mvnw*
 */*.jar
 */*.jar.original
 target/
+build/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
