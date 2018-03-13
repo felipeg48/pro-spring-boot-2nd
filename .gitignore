@@ -1,6 +1,7 @@
 *.class
 .DS_Store
 .vscode/
+.sts*
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -41,8 +42,8 @@ Servers/
 .project
 .recommenders
 .classpath
-mvnw*
-.mvn*
+#mvnw*
+#.mvn*
 */.gitignore
 */*.jar
 */*.jar.original
