@@ -22,6 +22,8 @@ public class ToDoInMemoryRepository implements CommonRepository<ToDo> {
         ToDo result = toDos.get(domain.getId());
         if(result != null) {
             result.setModified(Date.from(Instant.now()));
+            result.setDescription(domain.getDescription());
+            result.setCompleted(domain.isCompleted());
             domain = result;
         }
         toDos.put(domain.getId(), domain);

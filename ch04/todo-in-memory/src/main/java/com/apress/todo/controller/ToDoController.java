@@ -28,7 +28,7 @@ public class ToDoController {
         this.toDoInMemoryRepository = toDoInMemoryRepository;
     }
 
-    @GetMapping(value = "/todo") //@RequestMapping(value="/todo", method = {RequestMethod.GET})
+    @GetMapping("/todo") //@RequestMapping(value="/todo", method = {RequestMethod.GET})
     public ResponseEntity<Iterable<ToDo>> getToDos(){
         return ResponseEntity.ok(toDoInMemoryRepository.findAll());
     }
