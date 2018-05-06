@@ -29,7 +29,7 @@ public class TodoClientApplication {
 	        assert toDos != null;
 	        toDos.forEach( toDo -> log.info(toDo.toString()));
 
-            ToDo newToDo = client.upsert(new ToDo("Finish the Book"));
+            ToDo newToDo = client.upsert(new ToDo("Drink plenty of Water daily!"));
             assert newToDo != null;
             log.info(newToDo.toString());
 
