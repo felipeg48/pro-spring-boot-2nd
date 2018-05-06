@@ -3,6 +3,7 @@ package com.apress.todo.controller;
 import com.apress.todo.domain.ToDo;
 import com.apress.todo.domain.ToDoBuilder;
 import com.apress.todo.repository.CommonRepository;
+import com.apress.todo.repository.ToDoRepository;
 import com.apress.todo.validation.ToDoValidationError;
 import com.apress.todo.validation.ToDoValidationErrorBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,28 +20,28 @@ import java.net.URI;
 @RequestMapping("/api")
 public class ToDoController {
 
-    private CommonRepository<ToDo> repository;
+    private CommonRepository<ToDo> toDoRepository;
 
     @Autowired
-    public ToDoController(CommonRepository<ToDo> repository) {
-        this.repository = repository;
+    public ToDoController(ToDoRepository toDoRepository) {
+        this.toDoRepository = toDoRepository;
     }
 
-    @GetMapping("/todo") //@RequestMapping(value="/todo", method = {RequestMethod.GET})
+    @GetMapping("/todo")
     public ResponseEntity<Iterable<ToDo>> getToDos(){
-        return ResponseEntity.ok(repository.findAll());
+        return ResponseEntity.ok(toDoRepository.findAll());
     }
 
     @GetMapping("/todo/{id}")
     public ResponseEntity<ToDo> getToDoById(@PathVariable String id){
-        return ResponseEntity.ok(repository.findById(id));
+        return ResponseEntity.ok(toDoRepository.findById(id));
     }
 
     @PatchMapping("/todo/{id}")
     public ResponseEntity<ToDo> setCompleted(@PathVariable String id){
-        ToDo result = repository.findById(id);
+        ToDo result = toDoRepository.findById(id);
         result.setCompleted(true);
-        repository.save(result);
+        toDoRepository.save(result);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .buildAndExpand(result.getId()).toUri();
 
@@ -53,7 +54,7 @@ public class ToDoController {
             return ResponseEntity.badRequest().body(ToDoValidationErrorBuilder.fromBindingErrors(errors));
         }
 
-        ToDo result = repository.save(toDo);
+        ToDo result = toDoRepository.save(toDo);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(result.getId()).toUri();
         return ResponseEntity.created(location).build();
@@ -61,13 +62,13 @@ public class ToDoController {
 
     @DeleteMapping("/todo/{id}")
     public ResponseEntity<ToDo> deleteToDo(@PathVariable String id){
-        repository.delete(ToDoBuilder.create().withId(id).build());
+        toDoRepository.delete(ToDoBuilder.create().withId(id).build());
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/todo")
     public ResponseEntity<ToDo> deleteToDo(@RequestBody ToDo toDo){
-        repository.delete(toDo);
+        toDoRepository.delete(toDo);
         return ResponseEntity.noContent().build();
     }
 

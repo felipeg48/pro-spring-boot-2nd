@@ -3,16 +3,15 @@ package com.apress.todo.repository;
 import com.apress.todo.domain.ToDo;
 import org.springframework.stereotype.Repository;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
-public class ToDoInMemoryRepository implements CommonRepository<ToDo> {
+public class ToDoRepository implements CommonRepository<ToDo> {
 
     private Map<String,ToDo> toDos = new HashMap<>();
 
@@ -21,7 +20,7 @@ public class ToDoInMemoryRepository implements CommonRepository<ToDo> {
     public ToDo save(ToDo domain) {
         ToDo result = toDos.get(domain.getId());
         if(result != null) {
-            result.setModified(Date.from(Instant.now()));
+            result.setModified(LocalDateTime.now());
             result.setDescription(domain.getDescription());
             result.setCompleted(domain.isCompleted());
             domain = result;
@@ -53,10 +52,6 @@ public class ToDoInMemoryRepository implements CommonRepository<ToDo> {
     }
 
     private Comparator<Map.Entry<String,ToDo>> entryComparator = (Map.Entry<String, ToDo> o1, Map.Entry<String, ToDo> o2) -> {
-        if(o1.getValue().getCreated().before(o2.getValue().getCreated()))
-            return -1;
-        else if (o1.getValue().getCreated().after(o2.getValue().getCreated()))
-            return 1;
-        return 0;
+        return o1.getValue().getCreated().compareTo(o2.getValue().getCreated());
     };
 }
