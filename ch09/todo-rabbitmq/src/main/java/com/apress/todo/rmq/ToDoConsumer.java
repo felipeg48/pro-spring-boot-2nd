@@ -1,14 +1,12 @@
-package com.apress.todo.jms;
+package com.apress.todo.rmq;
 
 
 import com.apress.todo.domain.ToDo;
 import com.apress.todo.repository.ToDoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.jms.annotation.JmsListener;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
-
-import javax.validation.Valid;
 
 @Component
 public class ToDoConsumer {
@@ -20,8 +18,8 @@ public class ToDoConsumer {
         this.repository = repository;
     }
 
-    @JmsListener(destination = "${todo.jms.destination}",containerFactory = "jmsFactory")
-    public void processToDo(@Valid ToDo todo){
+    @RabbitListener(queues = "${todo.amqp.queue}")
+    public void processToDo(ToDo todo){
         log.info("Consumer> " + todo);
         log.info("ToDo created> " + this.repository.save(todo));
     }

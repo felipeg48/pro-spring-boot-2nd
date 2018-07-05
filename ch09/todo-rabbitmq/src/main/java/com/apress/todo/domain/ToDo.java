@@ -5,19 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class ToDo {
 
     @Id
@@ -33,6 +27,7 @@ public class ToDo {
     private LocalDateTime modified;
     private boolean completed;
 
+    public ToDo(){}
     public ToDo(String description){
         this.description = description;
     }

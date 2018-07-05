@@ -3,6 +3,7 @@ package com.apress.todo.config;
 import com.apress.todo.error.ToDoErrorHandler;
 import com.apress.todo.validator.ToDoValidator;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.JmsListenerConfigurer;
@@ -17,7 +18,8 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 import javax.jms.ConnectionFactory;
 
 @Configuration
-public class TodoConfig {
+@EnableConfigurationProperties(ToDoProperties.class)
+public class ToDoConfig {
 
     @Bean
     public MessageConverter jacksonJmsMessageConverter() {

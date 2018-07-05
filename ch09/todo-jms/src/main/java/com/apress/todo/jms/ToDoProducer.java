@@ -7,12 +7,12 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TodoProducer {
+public class ToDoProducer {
 
-    private static final Logger log = LoggerFactory.getLogger(TodoProducer.class);
+    private static final Logger log = LoggerFactory.getLogger(ToDoProducer.class);
     private JmsTemplate jmsTemplate;
 
-    public TodoProducer(JmsTemplate jmsTemplate){
+    public ToDoProducer(JmsTemplate jmsTemplate){
         this.jmsTemplate = jmsTemplate;
     }
 

@@ -5,6 +5,8 @@ import com.apress.todo.domain.ToDoBuilder;
 import com.apress.todo.repository.ToDoRepository;
 import com.apress.todo.validation.ToDoValidationError;
 import com.apress.todo.validation.ToDoValidationErrorBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +18,11 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
 public class ToDoController {
-
+    private static Logger log = LoggerFactory.getLogger(ToDoController.class);
     private ToDoRepository toDoRepository;
 
     @Autowired
@@ -61,13 +64,15 @@ public class ToDoController {
     @RequestMapping(value="/todo", method = {RequestMethod.POST,RequestMethod.PUT})
     public ResponseEntity<?> createToDo(@Valid @RequestBody ToDo toDo, Errors errors){
         if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(e -> log.error(e.getObjectName() + " " + e.getDefaultMessage()));
             return ResponseEntity.badRequest().body(ToDoValidationErrorBuilder.fromBindingErrors(errors));
         }
 
         ToDo result = toDoRepository.save(toDo);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(result.getId()).toUri();
-        return ResponseEntity.created(location).build();
+
+        return ResponseEntity.created(location).body(result); //ResponseEntity.created(location).build();
     }
 
     @DeleteMapping("/todo/{id}")
@@ -85,6 +90,7 @@ public class ToDoController {
     @ExceptionHandler
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ToDoValidationError handleException(Exception exception) {
+        log.error(exception.getMessage());
         return new ToDoValidationError(exception.getMessage());
     }
 
