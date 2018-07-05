@@ -17,16 +17,16 @@ public class ToDoConfig {
 
     @Bean
     public RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
-                                                   MessageListenerAdapter rateListenerAdapter, @Value("${todo.redis.topic}") String topic) {
+                                                   MessageListenerAdapter toDoListenerAdapter, @Value("${todo.redis.topic}") String topic) {
 
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.addMessageListener(rateListenerAdapter, new PatternTopic(topic));
+        container.addMessageListener(toDoListenerAdapter, new PatternTopic(topic));
         return container;
     }
 
     @Bean
-    MessageListenerAdapter rateListenerAdapter(ToDoConsumer consumer) {
+    MessageListenerAdapter toDoListenerAdapter(ToDoConsumer consumer) {
         MessageListenerAdapter messageListenerAdapter = new MessageListenerAdapter(consumer);
         messageListenerAdapter.setSerializer(new Jackson2JsonRedisSerializer<>(ToDo.class));
         return messageListenerAdapter;
