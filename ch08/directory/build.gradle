@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group = 'com.apress.todo'
+group = 'com.apress.directory'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -29,16 +29,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
-    compile('org.springframework.boot:spring-boot-starter-mustache')
-
-    //WebJars
-    compile ('org.webjars:bootstrap:3.3.7')
-    compile ('org.webjars:jquery:3.2.1')
-
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
-
-    runtime('com.h2database:h2')
-    runtime('mysql:mysql-connector-java')
+	runtime('com.h2database:h2')
+	runtime('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
