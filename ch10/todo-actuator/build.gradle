@@ -29,6 +29,14 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.springframework.boot:spring-boot-starter-web')
+
+    //Test HealthIndicators
+    //compile('org.springframework.boot:spring-boot-starter-amqp')
+
+    //Micrometer
+    compile('io.micrometer:micrometer-registry-jmx')
+    compile('io.micrometer:micrometer-registry-prometheus')
+
 	runtime('com.h2database:h2')
 	runtime('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')

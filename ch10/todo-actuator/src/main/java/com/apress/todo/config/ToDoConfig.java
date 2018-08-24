@@ -2,21 +2,21 @@ package com.apress.todo.config;
 
 import com.apress.todo.interceptor.ToDoMetricInterceptor;
 import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.config.MeterFilter;
-import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.MappedInterceptor;
 
+@EnableConfigurationProperties(ToDoProperties.class)
 @Configuration
 public class ToDoConfig {
+
 
     @Bean
     public MappedInterceptor metricInterceptor(MeterRegistry registry) {
         return new MappedInterceptor(new String[]{"/**"}, new ToDoMetricInterceptor(registry));
     }
+
 
     /*
     @Bean
@@ -25,8 +25,10 @@ public class ToDoConfig {
     }
     */
 
-//    @Bean
-//    MeterFilter meterFilter() {
-//        return MeterFilter.denyUnless( f -> f.getName().contains("api"));
-//    }
+    /*
+    @Bean
+    MeterFilter meterFilter() {
+        return MeterFilter.denyUnless( f -> f.getName().contains("api"));
+    }
+    */
 }

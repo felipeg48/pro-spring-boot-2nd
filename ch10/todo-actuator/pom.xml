@@ -43,6 +43,14 @@
 		</dependency>
 
 
+        <!-- Test HealthIndicator -->
+        <!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        -->
+
         <!-- Micrometer -->
         <dependency>
             <groupId>io.micrometer</groupId>

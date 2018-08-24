@@ -1,6 +1,5 @@
 package com.apress.todo.interceptor;
 
-import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +27,8 @@ public class ToDoMetricInterceptor implements HandlerInterceptor {
             log.info(" >> PATH: {}",URI);
             log.info(" >> METHOD: {}", METHOD);
 
-            //pathKey = "api_".concat(METHOD.toLowerCase()).concat(URI.replaceAll("/","_").toLowerCase());
-            //this.registry.counter(pathKey).increment();
+            pathKey = "api_".concat(METHOD.toLowerCase()).concat(URI.replaceAll("/","_").toLowerCase());
+            this.registry.counter(pathKey).increment();
         }
     }
 }
