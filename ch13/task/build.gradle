@@ -26,5 +26,6 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
+    compile('com.apress.todo:todo-client-spring-boot-starter:0.0.1-SNAPSHOT')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

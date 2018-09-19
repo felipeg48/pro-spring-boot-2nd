@@ -24,7 +24,7 @@ public class ToDoClientAutoConfiguration {
     private final ToDoClientProperties toDoClientProperties;
 
     @Bean
-    public ToDoClient directoryClient(){
+    public ToDoClient client(){
         log.info(">>> Creating a ToDo Client...");
         return new ToDoClient(new RestTemplate(),this.toDoClientProperties);
     }

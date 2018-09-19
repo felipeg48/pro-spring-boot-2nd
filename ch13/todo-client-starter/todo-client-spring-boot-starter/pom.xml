@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-    <parent>  <!-- <1> -->
+    <parent>
         <groupId>com.apress.todo</groupId>
         <artifactId>todo-client</artifactId>
         <version>0.0.1-SNAPSHOT</version>
@@ -24,7 +24,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.apress.todo</groupId>   <!-- <2> -->
+            <groupId>com.apress.todo</groupId>
             <artifactId>todo-client-spring-boot-autoconfigure</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

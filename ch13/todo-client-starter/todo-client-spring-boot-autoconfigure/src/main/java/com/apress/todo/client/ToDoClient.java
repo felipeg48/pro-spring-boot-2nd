@@ -2,15 +2,12 @@ package com.apress.todo.client;
 
 import com.apress.todo.configuration.ToDoClientProperties;
 import com.apress.todo.domain.ToDo;
-import com.apress.todo.domain.ToDoCollection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.MediaTypes;
-import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.client.Traverson;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +17,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Collection;
-import java.util.Collections;
-
-import static java.net.URI.create;
 
 @AllArgsConstructor
 @Data
