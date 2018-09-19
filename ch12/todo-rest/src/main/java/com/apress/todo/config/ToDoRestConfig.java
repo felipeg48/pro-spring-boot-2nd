@@ -4,7 +4,6 @@ import com.apress.todo.domain.ToDo;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
-import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 
 @Configuration
 public class ToDoRestConfig extends RepositoryRestConfigurerAdapter {
