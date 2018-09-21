@@ -1,10 +1,5 @@
-package io.pivotal.workshop.web.config;
+package com.apress.todo.config;
 
-/*
-import java.text.SimpleDateFormat;
-import java.util.List;
-
-import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,16 +20,16 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.WebJarsResourceResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-*/
 
-public class DirectoryConfig {}
+import javax.sql.DataSource;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
-/*
 @Configuration
-@EnableJpaRepositories(basePackages="io.pivotal.workshop.web.repository")
+@EnableJpaRepositories(basePackages="com.apress.todo.repository")
 @EnableTransactionManagement
 @EnableWebMvc
-public class DirectoryConfig implements WebMvcConfigurer {
+public class ToDoConfig implements WebMvcConfigurer {
 
 
 	@Override
@@ -48,7 +43,7 @@ public class DirectoryConfig implements WebMvcConfigurer {
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-		builder.indentOutput(true).dateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+		builder.indentOutput(true).dateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 		converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
 		converters.add(new MappingJackson2XmlHttpMessageConverter(builder.createXmlMapper(true).build()));
 	}
@@ -86,6 +81,4 @@ public class DirectoryConfig implements WebMvcConfigurer {
 		txManager.setEntityManagerFactory(entityManagerFactory().getNativeEntityManagerFactory());
 		return txManager;
 	}
-
 }
-*/
